@@ -1,0 +1,79 @@
+##################################################
+################## the settings ##################
+##################################################
+
+model:                 1
+Grid_n_jobs:           3
+space:                 {}
+inner_n_splits:        10
+df_all_features.shape: (1104, 749)
+trainingData.shape:    (883, 372)
+testData.shape:        (221, 372)
+test size:             0.2
+
+
+
+
+##################################################
+###### summarize the estimated performance #######
+####### of the best model on the test set ########
+##################################################
+
+Rank-1: 94.57%
+best parameters are:
+ {}
+
+              precision    recall  f1-score   support
+
+           0       1.00      0.95      0.97       217
+           1       0.21      0.75      0.33         4
+
+    accuracy                           0.95       221
+   macro avg       0.60      0.85      0.65       221
+weighted avg       0.98      0.95      0.96       221
+
+
+###########################################################
+###########################################################
+False Positive (FP):			
+ [ 1. 11.]
+
+False Negative (FN):			
+ [11.  1.]
+
+True Positive (TP):			
+ [206.   3.]
+
+True Negative (TN):			
+ [  3. 206.]
+
+True Positive Rate (TPR)(Recall):		
+ [0.94930876 0.75      ] 
+
+True Negative Rate (TNR)(Specificity):		
+ [0.75       0.94930876] 
+
+Positive Predictive Value (PPV)(Precision):
+ [0.99516908 0.21428571] 
+
+Negative Predictive Value (NPV):
+ [0.21428571 0.99516908] 
+
+False Positive Rate (FPR)(False Match Rate (FMR))(False Acceptance Rate (FAR)):		
+ [0.25       0.05069124] 
+
+False Negative Rate (FNR)(False Non-Match Rate (FNMR))(False Rejection Rate (FRR)):		
+ [0.05069124 0.25      ] 
+
+False Discovery Rate (FDR):		
+ [0.00483092 0.78571429] 
+
+Overall accuracy (ACC):			
+ [0.94570136 0.94570136] 
+
+
+###########################################################
+###########################################################
+Confusion Matrix (CM): 
+[[206  11]
+ [  1   3]]

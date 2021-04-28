@@ -1,0 +1,79 @@
+##################################################
+################## the settings ##################
+##################################################
+
+model:                 4
+Grid_n_jobs:           3
+space:                 {'probability': [True], 'kernel': ['rbf'], 'C': [100, 1000], 'gamma': [0.001, 0.0001], 'random_state': [10]}
+inner_n_splits:        10
+df_all_features.shape: (1104, 749)
+trainingData.shape:    (883, 369)
+testData.shape:        (221, 369)
+test size:             0.2
+
+
+
+
+##################################################
+###### summarize the estimated performance #######
+####### of the best model on the test set ########
+##################################################
+
+Rank-1: 98.19%
+best parameters are:
+ {'C': 100, 'gamma': 0.001, 'kernel': 'rbf', 'probability': True, 'random_state': 10}
+
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      0.99       217
+           1       0.67      0.50      0.57         4
+
+    accuracy                           0.99       221
+   macro avg       0.83      0.75      0.78       221
+weighted avg       0.98      0.99      0.99       221
+
+
+###########################################################
+###########################################################
+False Positive (FP):			
+ [2. 1.]
+
+False Negative (FN):			
+ [1. 2.]
+
+True Positive (TP):			
+ [216.   2.]
+
+True Negative (TN):			
+ [  2. 216.]
+
+True Positive Rate (TPR)(Recall):		
+ [0.99539171 0.5       ] 
+
+True Negative Rate (TNR)(Specificity):		
+ [0.5        0.99539171] 
+
+Positive Predictive Value (PPV)(Precision):
+ [0.99082569 0.66666667] 
+
+Negative Predictive Value (NPV):
+ [0.66666667 0.99082569] 
+
+False Positive Rate (FPR)(False Match Rate (FMR))(False Acceptance Rate (FAR)):		
+ [0.5        0.00460829] 
+
+False Negative Rate (FNR)(False Non-Match Rate (FNMR))(False Rejection Rate (FRR)):		
+ [0.00460829 0.5       ] 
+
+False Discovery Rate (FDR):		
+ [0.00917431 0.33333333] 
+
+Overall accuracy (ACC):			
+ [0.98642534 0.98642534] 
+
+
+###########################################################
+###########################################################
+Confusion Matrix (CM): 
+[[216   1]
+ [  2   2]]

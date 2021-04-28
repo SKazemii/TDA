@@ -1,0 +1,79 @@
+##################################################
+################## the settings ##################
+##################################################
+
+model:                 24
+Grid_n_jobs:           3
+space:                 {}
+inner_n_splits:        10
+df_all_features.shape: (1104, 749)
+trainingData.shape:    (883, 364)
+testData.shape:        (221, 364)
+test size:             0.2
+
+
+
+
+##################################################
+###### summarize the estimated performance #######
+####### of the best model on the test set ########
+##################################################
+
+Rank-1: 98.64%
+best parameters are:
+ {}
+
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      0.99       218
+           1       0.50      0.67      0.57         3
+
+    accuracy                           0.99       221
+   macro avg       0.75      0.83      0.78       221
+weighted avg       0.99      0.99      0.99       221
+
+
+###########################################################
+###########################################################
+False Positive (FP):			
+ [1. 2.]
+
+False Negative (FN):			
+ [2. 1.]
+
+True Positive (TP):			
+ [216.   2.]
+
+True Negative (TN):			
+ [  2. 216.]
+
+True Positive Rate (TPR)(Recall):		
+ [0.99082569 0.66666667] 
+
+True Negative Rate (TNR)(Specificity):		
+ [0.66666667 0.99082569] 
+
+Positive Predictive Value (PPV)(Precision):
+ [0.99539171 0.5       ] 
+
+Negative Predictive Value (NPV):
+ [0.5        0.99539171] 
+
+False Positive Rate (FPR)(False Match Rate (FMR))(False Acceptance Rate (FAR)):		
+ [0.33333333 0.00917431] 
+
+False Negative Rate (FNR)(False Non-Match Rate (FNMR))(False Rejection Rate (FRR)):		
+ [0.00917431 0.33333333] 
+
+False Discovery Rate (FDR):		
+ [0.00460829 0.5       ] 
+
+Overall accuracy (ACC):			
+ [0.98642534 0.98642534] 
+
+
+###########################################################
+###########################################################
+Confusion Matrix (CM): 
+[[216   2]
+ [  1   2]]

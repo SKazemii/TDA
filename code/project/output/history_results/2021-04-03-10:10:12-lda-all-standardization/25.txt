@@ -1,0 +1,79 @@
+##################################################
+################## the settings ##################
+##################################################
+
+model:                 25
+Grid_n_jobs:           3
+space:                 {}
+inner_n_splits:        10
+df_all_features.shape: (1104, 749)
+trainingData.shape:    (883, 364)
+testData.shape:        (221, 364)
+test size:             0.2
+
+
+
+
+##################################################
+###### summarize the estimated performance #######
+####### of the best model on the test set ########
+##################################################
+
+Rank-1: 94.12%
+best parameters are:
+ {}
+
+              precision    recall  f1-score   support
+
+           0       0.99      0.95      0.97       217
+           1       0.15      0.50      0.24         4
+
+    accuracy                           0.94       221
+   macro avg       0.57      0.72      0.60       221
+weighted avg       0.98      0.94      0.96       221
+
+
+###########################################################
+###########################################################
+False Positive (FP):			
+ [ 2. 11.]
+
+False Negative (FN):			
+ [11.  2.]
+
+True Positive (TP):			
+ [206.   2.]
+
+True Negative (TN):			
+ [  2. 206.]
+
+True Positive Rate (TPR)(Recall):		
+ [0.94930876 0.5       ] 
+
+True Negative Rate (TNR)(Specificity):		
+ [0.5        0.94930876] 
+
+Positive Predictive Value (PPV)(Precision):
+ [0.99038462 0.15384615] 
+
+Negative Predictive Value (NPV):
+ [0.15384615 0.99038462] 
+
+False Positive Rate (FPR)(False Match Rate (FMR))(False Acceptance Rate (FAR)):		
+ [0.5        0.05069124] 
+
+False Negative Rate (FNR)(False Non-Match Rate (FNMR))(False Rejection Rate (FRR)):		
+ [0.05069124 0.5       ] 
+
+False Discovery Rate (FDR):		
+ [0.00961538 0.84615385] 
+
+Overall accuracy (ACC):			
+ [0.94117647 0.94117647] 
+
+
+###########################################################
+###########################################################
+Confusion Matrix (CM): 
+[[206  11]
+ [  2   2]]

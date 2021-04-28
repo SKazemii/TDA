@@ -1,0 +1,79 @@
+##################################################
+################## the settings ##################
+##################################################
+
+model:                 6
+Grid_n_jobs:           3
+space:                 {}
+inner_n_splits:        10
+df_all_features.shape: (1104, 749)
+trainingData.shape:    (883, 363)
+testData.shape:        (221, 363)
+test size:             0.2
+
+
+
+
+##################################################
+###### summarize the estimated performance #######
+####### of the best model on the test set ########
+##################################################
+
+Rank-1: 97.29%
+best parameters are:
+ {}
+
+              precision    recall  f1-score   support
+
+           0       0.99      0.99      0.99       216
+           1       0.40      0.40      0.40         5
+
+    accuracy                           0.97       221
+   macro avg       0.69      0.69      0.69       221
+weighted avg       0.97      0.97      0.97       221
+
+
+###########################################################
+###########################################################
+False Positive (FP):			
+ [3. 3.]
+
+False Negative (FN):			
+ [3. 3.]
+
+True Positive (TP):			
+ [213.   2.]
+
+True Negative (TN):			
+ [  2. 213.]
+
+True Positive Rate (TPR)(Recall):		
+ [0.98611111 0.4       ] 
+
+True Negative Rate (TNR)(Specificity):		
+ [0.4        0.98611111] 
+
+Positive Predictive Value (PPV)(Precision):
+ [0.98611111 0.4       ] 
+
+Negative Predictive Value (NPV):
+ [0.4        0.98611111] 
+
+False Positive Rate (FPR)(False Match Rate (FMR))(False Acceptance Rate (FAR)):		
+ [0.6        0.01388889] 
+
+False Negative Rate (FNR)(False Non-Match Rate (FNMR))(False Rejection Rate (FRR)):		
+ [0.01388889 0.6       ] 
+
+False Discovery Rate (FDR):		
+ [0.01388889 0.6       ] 
+
+Overall accuracy (ACC):			
+ [0.97285068 0.97285068] 
+
+
+###########################################################
+###########################################################
+Confusion Matrix (CM): 
+[[213   3]
+ [  3   2]]
