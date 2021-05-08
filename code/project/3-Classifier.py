@@ -147,7 +147,8 @@ with open(os.path.join(cfg.pickle_dir, "df_AR_features.pickle"), "rb") as handle
 # df_inter_stride #########################################################################
 with open(os.path.join(cfg.pickle_dir, "df_inter_stride.pickle"), "rb") as handle:
     df_inter_stride = pickle.load(handle)
-    df_inter_stride.rename("df_inter_stride", inplace=True)
+
+    # df_inter_stride.rename("df_inter_stride", inplace=True)
 
 
 # df_label ################################################################################
@@ -277,81 +278,120 @@ print(Counter(df_label))  # equals to list(set(words))
 for modelofperson in range(51):
     # print(labels_bi[:, model])
 
-    print("[INFO] splitting the training and testing sets...")
-    (trainData_AR, testData_AR, trainLabels_AR, testLabels_AR,) = train_test_split(
-        df_AR_features,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (
-        trainData_temporal,
-        testData_temporal,
-        trainLabels_temporal,
-        testLabels_temporal,
-    ) = train_test_split(
-        df_temporal_features,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (
-        trainData_statistical,
-        testData_statistical,
-        trainLabels_statistical,
-        testLabels_statistical,
-    ) = train_test_split(
-        df_statistical_features,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (
-        trainData_spectral,
-        testData_spectral,
-        trainLabels_spectral,
-        testLabels_spectral,
-    ) = train_test_split(
-        df_spectral_features,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (trainData_all, testData_all, trainLabels_all, testLabels_all) = train_test_split(
-        df_all_features,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (
-        trainData_vgg16,
-        testData_vgg16,
-        trainLabels_vgg16,
-        testLabels_vgg16,
-    ) = train_test_split(
-        df_vgg16,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
-    (
-        trainData_Mobnet,
-        testData_Mobnet,
-        trainLabels_Mobnet,
-        testLabels_Mobnet,
-    ) = train_test_split(
-        df_Mobnet,
-        np.array(labels_bi[:, modelofperson]),
-        stratify=np.array(labels_bi[:, modelofperson]),
-        test_size=cfg.test_size,
-        random_state=cfg.seed,
-    )
+    if cfg.nested == False:
+        print("[INFO] splitting the training and testing sets...")
+        (trainData_AR, testData_AR, trainLabels_AR, testLabels_AR,) = train_test_split(
+            df_AR_features,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_temporal,
+            testData_temporal,
+            trainLabels_temporal,
+            testLabels_temporal,
+        ) = train_test_split(
+            df_temporal_features,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_statistical,
+            testData_statistical,
+            trainLabels_statistical,
+            testLabels_statistical,
+        ) = train_test_split(
+            df_statistical_features,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_spectral,
+            testData_spectral,
+            trainLabels_spectral,
+            testLabels_spectral,
+        ) = train_test_split(
+            df_spectral_features,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_all,
+            testData_all,
+            trainLabels_all,
+            testLabels_all,
+        ) = train_test_split(
+            df_all_features,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_vgg16,
+            testData_vgg16,
+            trainLabels_vgg16,
+            testLabels_vgg16,
+        ) = train_test_split(
+            df_vgg16,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+        (
+            trainData_Mobnet,
+            testData_Mobnet,
+            trainLabels_Mobnet,
+            testLabels_Mobnet,
+        ) = train_test_split(
+            df_Mobnet,
+            np.array(labels_bi[:, modelofperson]),
+            stratify=np.array(labels_bi[:, modelofperson]),
+            test_size=cfg.test_size,
+            random_state=cfg.seed,
+        )
+    else:
+        print(
+            "[INFO] splitting the training dataset into {} folds\n\n".format(
+                cfg.outer_n_splits
+            )
+        )
+
+        cv_outer = StratifiedKFold(
+            n_splits=cfg.outer_n_splits,
+            shuffle=cfg.outer_shuffle,
+            random_state=cfg.seed,
+        )
+
+    # trainData_all,
+    # testData_all,
+    # trainLabels_all,
+    # testLabels_all,
+    # df_all_features,
+    # np.array(labels_bi[:, modelofperson]),
+    trainLabels = labels_bi[:, modelofperson]
+    print(type(df_all_features))
+    for train_ix, test_ix in cv_outer.split(
+        df_all_features, np.array(labels_bi[:, modelofperson])
+    ):
+        print(train_ix)
+        1 / 0
+        trainData_all, testData_all = (
+            df_all_features[train_ix, :],
+            trainData[test_ix, :],
+        )
+        1 / 0
+        trainLabels_all, testLabels_all = trainLabels[train_ix], trainLabels[test_ix]
+    1 / 0
     print("[INFO] Deleting High-correlated features...")
     if cfg.Highcorrelatedflag:
         corr_features = tsfel.correlated_features(trainData_AR)

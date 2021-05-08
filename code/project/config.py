@@ -21,7 +21,7 @@ weights = "imagenet"
 # include_top = {True | False}
 include_top = False
 
-
+nested = True
 VarianceThresholdflag = True
 Highcorrelatedflag = False
 
@@ -30,8 +30,8 @@ seed = 10
 Grid_n_jobs = 3
 Grid_refit = True
 
-# outer_n_splits = 10
-# outer_shuffle = True
+outer_n_splits = 10
+outer_shuffle = True
 
 inner_n_splits = 10
 inner_shuffle = True
@@ -99,9 +99,9 @@ print("[INFO] Setting directories")
 project_dir = os.getcwd()
 fig_dir = os.path.join(project_dir, "manuscript", "src", "figures", "project")
 tbl_dir = os.path.join(project_dir, "manuscript", "src", "tables", "project")
-data_dir = os.path.join(project_dir, "Dataset", "project", "Step Scan Dataset", "[H5]")
+data_dir = os.path.join(project_dir, "datasets", "project", "Step Scan Dataset", "[H5]")
 dataset_file = os.path.join(data_dir, "footpressures_align.h5")
-pickle_dir = os.path.join(project_dir, "Dataset", "project", "pickle")
+pickle_dir = os.path.join(project_dir, "datasets", "pickle")
 output_dir = os.path.join(project_dir, "code", "project", "output")
 
 
