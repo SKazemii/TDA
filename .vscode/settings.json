@@ -10,8 +10,9 @@
     "terminal.integrated.fontWeight": "500",
     "window.zoomLevel": 2,
     "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.9/bin/python3",
+    "python.analysis.extraPaths": ["/Users/saeedkazemi/Documents/Python/MasterThesis/code/packages"],
     "python.formatting.provider": "black",
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "python.linting.enabled": true,
     "python.linting.pylintEnabled": true,
     "code-runner.executorMap": {
