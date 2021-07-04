@@ -2,7 +2,9 @@
     "OpenMax" : {
         "ALPHA_RANK": 10,
         "WEIBULL_TAIL_SIZE": 1600, 
-        "NCHANNELS": 1
+        "NCHANNELS": 1,
+        "THRESHOLD": 0.1
+
     },
     
     "dataset" : {
@@ -18,7 +20,7 @@
         "train_mode": false,
         "Evaluate": false,
         "compute_trained_features": false,
-        "compute_tested_features": false,
+        "compute_tested_features": true,
         "path_saved_model": "./code/outputs/saved_convnet.hdf5",
         "batch_size": 128,
         "epochs": 5,

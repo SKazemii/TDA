@@ -161,7 +161,7 @@ if config_data["convnet"]["compute_trained_features"] == True:
         os.makedirs(path)
 
     print("\n\n############################")
-    for i in tqdm(range (x_train.shape[0]), desc="[INFO] Calcolating features ... ", ncols=100):
+    for i in tqdm(range (x_train.shape[0]), desc="[INFO] Calculating features ... ", ncols=100):
 
         X = K.constant(np.expand_dims(x_train[i,:,:,:], 0))
         
@@ -238,10 +238,10 @@ if config_data["convnet"]["compute_tested_features"] == True:
     os.makedirs(path)
 
 
-    b = x_test.shape[0]
+    b = 200 #x_test.shape[0]
     print("\n\n############################")
-    acc = np.zeros((b,3))#x_test.shape[0]
-    for i in tqdm(range (b), desc="[INFO] Calcolating test features ... ", ncols=100):#x_test.shape[0]
+    acc = np.zeros((b,5))#x_test.shape[0]
+    for i in tqdm(range (b), desc="[INFO] Calculating test features ... ", ncols=100):#x_test.shape[0]
 
         X = K.constant(np.expand_dims(x_test[i,:,:,:], 0))
         
@@ -285,6 +285,15 @@ if config_data["convnet"]["compute_tested_features"] == True:
         acc[i, 1] = softmax.argmax()
         acc[i, 2] = openmax.argmax()
 
+        if softmax[softmax.argmax()] < config_data["OpenMax"]["THRESHOLD"]:
+            acc[i, 3] = softmax.argmax()
+        else:
+            acc[i, 3] = config_data["dataset"]["num_classes"]
+            
+        if openmax[openmax.argmax()] < config_data["OpenMax"]["THRESHOLD"]:
+            acc[i, 4] = openmax.argmax()
+        else:
+            acc[i, 4] = config_data["dataset"]["num_classes"]
 
         data1 = {"fc1": layer_outs[0][0],
                 "fc2": layer_outs[1][0],
@@ -307,7 +316,7 @@ if config_data["convnet"]["compute_tested_features"] == True:
         #     exit()
 
     print("[INFO] Tested features were completed!")
-    df = pd.DataFrame(acc, columns=["clss", "softmax", "openmax"])
+    df = pd.DataFrame(acc, columns=["clss", "softmax", "openmax", "soft", "open"])
     if os.path.exists(config_data["path"]["path_csv"]):
         os.remove(config_data["path"]["path_csv"])
     df.to_csv(config_data["path"]["path_csv"])
@@ -315,7 +324,7 @@ if config_data["convnet"]["compute_tested_features"] == True:
 
 
 # pprint.pprint(data1)
-# print(df.head(30))
+print(df.head(30))
 df = pd.read_csv(config_data["path"]["path_csv"])
 print("\n\n############################")
 print("Total samples:   {}".format(df.shape[0]))
@@ -328,12 +337,18 @@ print("Accuracy with unknown samples")
 print("[INFO] Softmax accuracy: {:.2f} %".format( 100*(((df["clss"]==df["softmax"])*1).sum()/df.shape[0])))
 print("[INFO] Openmax accuracy: {:.2f} %".format( 100*(((df["clss"]==df["openmax"])*1).sum()/df.shape[0])))
 
+print("[INFO] Softmax+threshold accuracy: {:.2f} %".format( 100*(((df["clss"]==df["soft"])*1).sum()/df.shape[0])))
+print("[INFO] Openmax+threshold accuracy: {:.2f} %".format( 100*(((df["clss"]==df["open"])*1).sum()/df.shape[0])))
+
 
 df2 = df.loc[ df["clss"] < num_classes ]
 print("\n\n############################")
 print("Accuracy without unknown samples")
 print("[INFO] Softmax accuracy: {:.2f} %".format( 100*(((df2["clss"]==df2["softmax"])*1).sum()/df2.shape[0])))
 print("[INFO] Openmax accuracy: {:.2f} %".format( 100*(((df2["clss"]==df2["openmax"])*1).sum()/df2.shape[0])))
+
+print("[INFO] Softmax+threshold accuracy: {:.2f} %".format( 100*(((df2["clss"]==df2["soft"])*1).sum()/df2.shape[0])))
+print("[INFO] Openmax+threshold accuracy: {:.2f} %".format( 100*(((df2["clss"]==df2["open"])*1).sum()/df2.shape[0])))
 
 
 # print(df.loc[ df["clss"] != df["openmax"] ])
