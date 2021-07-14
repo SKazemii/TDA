@@ -1,0 +1,39 @@
+{
+    "OpenMax" : {
+        "ALPHA_RANK": 10,
+        "WEIBULL_TAIL_SIZE": 1600, 
+        "NCHANNELS": 1,
+        "THRESHOLD": 0.1
+
+    },
+    
+    "dataset" : {
+        "num_classes": 2,
+        "imposter_classes": 3,
+        "img_hight": 28,
+        "img_weight": 28,
+        "img_chanel": 1
+    },
+
+
+    "convnet" : {
+        "train_mode": false,
+        "Evaluate": false,
+        "compute_trained_features": false,
+        "compute_tested_features": true,
+        "path_saved_model": "./code/outputs/saved_convnet.hdf5",
+        "batch_size": 128,
+        "epochs": 5,
+        "validation_split": 0.1
+    },
+
+    "path" : {
+        "path_saved_outputs": "./code/outputs/trained-features/",
+        "path_dist_outputs": "./code/outputs/mean_distance_files/",
+        "path_MAV_outputs": "./code/outputs/mean_files/",
+        "path_test_outputs": "./code/outputs/tested_features/",
+        "path_csv": "./code/outputs/reselt.csv"
+    }
+}
+
+

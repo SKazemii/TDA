@@ -14,6 +14,7 @@
     "python.formatting.provider": "black",
     "editor.formatOnSave": false,
     "python.linting.enabled": true,
+    "python.linting.pylintArgs": ["--generate-members"],
     "python.linting.pylintEnabled": true,
     "code-runner.executorMap": {
         "python": "$pythonPath -u $fullFileName"
