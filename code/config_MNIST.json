@@ -9,7 +9,7 @@
     
     "dataset" : {
         "num_classes": 2,
-        "imposter_classes": 3,
+        "imposter_classes": 2,
         "img_hight": 28,
         "img_weight": 28,
         "img_chanel": 1

@@ -121,11 +121,35 @@ x_train = x_train.astype("float32") / 255
 x_test = x_test.astype("float32") / 255
 
 
-print(x_train[1:10,:,:].shape)
+
+train_ind = np.where(y_train < num_classes)
+
+x_train = x_train[train_ind[0], :, :]
+y_train = y_train[train_ind[0]]
+y_tr = y_train
+
+
+test_ind_2 = np.where(y_test < num_classes)
+
+x_test_2 = x_test[test_ind_2[0], :, :]
+y_test_2 = y_test[test_ind_2[0]]
+y_te_2 = y_test_2
+
+
+print("[INFO] x_train shape:", x_train.shape)
+print("[INFO] y_train shape:", y_train.shape)
+print("\n\n")
+
+# convert class vectors to binary class matrices
+y_train = keras.utils.to_categorical(y_train, num_classes)
+y_test_2 = keras.utils.to_categorical(y_test_2, num_classes)
+
+
 
 # sys.exit()
 X_train_tda = tda_union.fit_transform(x_train[1:10,:,:])
 print(X_train_tda.shape)
 print(type(X_train_tda))
 
-np.savetxt("datasets/X_train_tda.txt", X_train_tda)
+np.save("./code/X_train_tda.npy", X_train_tda)
+np.save("./code/y_train.npy", y_train)
